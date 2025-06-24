@@ -78,8 +78,6 @@ export default function AddTeamMemberPage() {
       const statusType = formData.StatusType === 'Active' ? 'A' : 'I';
       
       const departmentID = formData.DepartmentID ? Number(formData.DepartmentID) : null;
-      
-      const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'hrms-backend-production-3091.up.railway.app';
 
       const payload = {
         Fname: formData.Fname,
@@ -96,7 +94,7 @@ export default function AddTeamMemberPage() {
         CreatedBy: formData.CreatedBy,
       };
 
-      const response = await fetch(`${apiBaseUrl}/user`, {
+      const response = await fetch("https://hrms-backend-production-3091.up.railway.app/user", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
