@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/Bucket'; 
+const API_URL = `${process.env.NEXT_PUBLIC_API_BASE_URL}/Bucket`;
 
 export interface Bucket {
   BucketId?: number;
@@ -44,3 +44,18 @@ export const updateBucket = async (id: number, bucket: Partial<Bucket>): Promise
   const response = await axios.put<Bucket>(`${API_URL}/${id}`, bucketData);
   return response.data;
 };
+
+export async function show() {
+  const accessToken = sessionStorage.getItem('accessToken');
+  const response = await fetch('http://localhost:5000/bucket', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${accessToken}`,
+    },
+  });
+  if (!response.ok) {
+    throw new Error('Failed to fetch buckets');
+  }
+  return response.json();
+}

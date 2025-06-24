@@ -32,7 +32,7 @@ export default function LoginPage() {
         headers['Authorization'] = `Bearer ${encryptedToken}`;
       }
   
-      const loginResponse = await fetch('http://localhost:5000/auth/login', {
+      const loginResponse = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/login`, {
         method: 'POST',
         headers,
         body: JSON.stringify({
@@ -45,11 +45,11 @@ export default function LoginPage() {
         const loginData = await loginResponse.json();
         const encryptedToken = createEncryptedToken(loginData.access_token);
         
-        // Store tokens
+        
         sessionStorage.setItem('accessToken', loginData.access_token);
         sessionStorage.setItem('encryptedToken', encryptedToken);
         
-        // Store user details
+        
         if (loginData.user) {
           sessionStorage.setItem('uid', loginData.user.uid);
           sessionStorage.setItem('cid', loginData.user.cid);

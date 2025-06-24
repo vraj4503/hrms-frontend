@@ -40,7 +40,7 @@ export default function EditTeamMemberPage({ params }: EditTeamMemberPageProps) 
 
     const fetchTeamMember = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/user/${id}`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/${id}`, {
           headers: {
             'Authorization': `Bearer ${accessToken}`,
           },
@@ -105,7 +105,7 @@ export default function EditTeamMemberPage({ params }: EditTeamMemberPageProps) 
         UpdatedBy: updatedBy ? Number(updatedBy) : undefined,
       };
 
-      // Remove password if it's empty to avoid overwriting with an empty value
+      
       if (updatePayload.Password === '') {
         delete updatePayload.Password;
       }

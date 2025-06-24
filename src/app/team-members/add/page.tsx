@@ -72,13 +72,37 @@ export default function AddTeamMemberPage() {
         return;
       }
 
-      const response = await fetch('http://localhost:5000/user', {
+      
+      const formattedDOB = formData.DOB ? new Date(formData.DOB).toISOString() : null;
+      
+      const statusType = formData.StatusType === 'Active' ? 'A' : 'I';
+      
+      const departmentID = formData.DepartmentID ? Number(formData.DepartmentID) : null;
+      
+      const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000';
+
+      const payload = {
+        Fname: formData.Fname,
+        Lname: formData.Lname,
+        Mname: formData.Mname ? formData.Mname : null,
+        DOB: formattedDOB,
+        StatusType: statusType,
+        DepartmentID: departmentID,
+        UserType: formData.UserType,
+        Password: formData.Password,
+        Email: formData.Email,
+        Phone: formData.Phone,
+        CID: formData.CID,
+        CreatedBy: formData.CreatedBy,
+      };
+
+      const response = await fetch(`${apiBaseUrl}/user`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${accessToken}`,
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(payload),
       });
 
       if (response.ok) {

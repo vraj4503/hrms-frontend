@@ -2,19 +2,11 @@
 
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-
-interface TeamMember {
-  UID: number;
-  Fname: string;
-  Lname: string;
-  Mname: string;
-  Email: string;
-  UserType: string;
-}
+import { userApi, User } from '@/app/services/api';
 
 export default function TeamMembersPage() {
   const router = useRouter();
-  const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
+  const [teamMembers, setTeamMembers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -24,22 +16,12 @@ export default function TeamMembersPage() {
       return;
     }
 
-    
     const fetchTeamMembers = async () => {
       try {
-        
-        const response = await fetch('http://localhost:5000/user', {
-          headers: {
-            'Authorization': `Bearer ${accessToken}`
-          }
-        });
-        
-        if (response.ok) {
-          const data = await response.json();
-          setTeamMembers(data);
-        } else {
-          console.error('Failed to fetch team members');
-        }
+        const cid = sessionStorage.getItem('cid');
+        if (!cid) return;
+        const response = await userApi.getByCompany(Number(cid));
+        setTeamMembers(response.data);
       } catch (error) {
         console.error('Error fetching team members:', error);
       } finally {

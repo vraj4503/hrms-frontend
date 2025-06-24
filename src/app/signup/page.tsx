@@ -36,7 +36,7 @@ const SignupPage = () => {
     e.preventDefault();
     
     try {
-      const companyResponse = await fetch('http://localhost:5000/company', {
+      const companyResponse = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/company`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -57,7 +57,7 @@ const SignupPage = () => {
       
       const formattedDate = formData.DOB ? new Date(formData.DOB).toISOString() : '';
       
-      const userResponse = await fetch('http://localhost:5000/user', {
+      const userResponse = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
