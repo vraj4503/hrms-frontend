@@ -47,7 +47,7 @@ export const updateBucket = async (id: number, bucket: Partial<Bucket>): Promise
 
 export async function show() {
   const accessToken = sessionStorage.getItem('accessToken');
-  const response = await fetch('http://localhost:5000/bucket', {
+  const response = await fetch('hrms-backend-production-3091.up.railway.app/bucket', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

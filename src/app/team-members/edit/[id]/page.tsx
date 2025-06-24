@@ -100,7 +100,7 @@ export default function EditTeamMemberPage({ params }: EditTeamMemberPageProps) 
 
       const updatePayload = {
         ...formData,
-        DepartmentID: Number(formData.DepartmentID), // Ensure number type for backend
+        DepartmentID: Number(formData.DepartmentID), 
         DOB: formData.DOB ? new Date(formData.DOB) : undefined,
         UpdatedBy: updatedBy ? Number(updatedBy) : undefined,
       };
@@ -110,7 +110,7 @@ export default function EditTeamMemberPage({ params }: EditTeamMemberPageProps) 
         delete updatePayload.Password;
       }
 
-      const response = await fetch(`http://localhost:5000/user/${id}`, {
+      const response = await fetch(`hrms-backend-production-3091.up.railway.app/user/${id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
