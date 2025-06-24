@@ -94,6 +94,8 @@ export default function AddTeamMemberPage() {
         CreatedBy: formData.CreatedBy,
       };
 
+      console.log('Payload:', payload);
+
       const response = await fetch("https://hrms-backend-production-3091.up.railway.app/user", {
         method: 'POST',
         headers: {
