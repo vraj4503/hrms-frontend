@@ -32,7 +32,7 @@ export default function LoginPage() {
         headers['Authorization'] = `Bearer ${encryptedToken}`;
       }
   
-      const loginResponse = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/login`, {
+      const loginResponse = await fetch(`https://hrms-backend-production-3091.up.railway.app/auth/login`, {
         method: 'POST',
         headers,
         body: JSON.stringify({
