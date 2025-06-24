@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = `${process.env.NEXT_PUBLIC_API_BASE_URL}/Bucket`;
+const API_URL = "hrms-backend-production-3091.up.railway.app/Bucket";
 
 export interface Bucket {
   BucketId?: number;
