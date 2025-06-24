@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = "hrms-backend-production-3091.up.railway.app/Bucket";
+const API_URL = "https://hrms-backend-production-3091.up.railway.app/Bucket";
 
 export interface Bucket {
   BucketId?: number;
@@ -47,7 +47,7 @@ export const updateBucket = async (id: number, bucket: Partial<Bucket>): Promise
 
 export async function show() {
   const accessToken = sessionStorage.getItem('accessToken');
-  const response = await fetch('hrms-backend-production-3091.up.railway.app/bucket', {
+  const response = await fetch('https://hrms-backend-production-3091.up.railway.app/bucket', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
