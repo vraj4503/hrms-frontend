@@ -67,7 +67,6 @@ export default function TeamMembersPage() {
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Middle Name</th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">User Type</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
@@ -80,12 +79,6 @@ export default function TeamMembersPage() {
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{member.Email}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{member.UserType}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <button
-                          onClick={() => router.push(`/team-members/edit/${member.UID}`)}
-                          className="text-indigo-600 hover:text-indigo-900"
-                        >
-                          Edit
-                        </button>
                       </td>
                     </tr>
                   ))}
