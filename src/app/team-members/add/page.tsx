@@ -72,6 +72,7 @@ export default function AddTeamMemberPage() {
         return;
       }
 
+
       
       const formattedDOB = formData.DOB ? new Date(formData.DOB).toISOString() : null;
       
@@ -97,6 +98,7 @@ export default function AddTeamMemberPage() {
       console.log('Payload:', payload);
 
       const response = await fetch("https://hrms-backend-production-3091.up.railway.app/user/team-member", {
+
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

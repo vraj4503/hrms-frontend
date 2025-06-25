@@ -18,10 +18,12 @@ export default function TeamMembersPage() {
 
     const fetchTeamMembers = async () => {
       try {
+
         const cid = sessionStorage.getItem('cid');
         if (!cid) return;
         const response = await userApi.getByCompany(Number(cid));
         setTeamMembers(response.data);
+
       } catch (error) {
         console.error('Error fetching team members:', error);
       } finally {

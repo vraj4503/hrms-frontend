@@ -22,7 +22,9 @@ export default function AddBucketPage() {
         return;
       }
 
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/Bucket`, {
+
+      const response = await fetch('https://hrms-backend-production-3091.up.railway.app/Bucket', {
+
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
