@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:5000';
+const API_BASE_URL = 'hrms-backend-production-3091.up.railway.app';
 
 export interface User {
   UID: number;
