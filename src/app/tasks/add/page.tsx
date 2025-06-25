@@ -4,17 +4,20 @@ import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { createToDo } from '@/services/todoService';
 import { getAllBuckets, Bucket } from '@/services/bucketService';
+import { userApi, User } from '@/app/services/api';
 
 export default function AddTaskPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [buckets, setBuckets] = useState<Bucket[]>([]);
+  const [users, setUsers] = useState<User[]>([]);
   const [formData, setFormData] = useState({
     title: '',
     description: '',
     bucketId: '',
     dueDate: '',
-    priority: 'medium'
+    priority: 'medium',
+    assignTo: ''
   });
 
   useEffect(() => {
@@ -33,7 +36,19 @@ export default function AddTaskPage() {
       }
     };
 
+    const fetchUsers = async () => {
+      try {
+        const cid = sessionStorage.getItem('cid');
+        if (!cid) return;
+        const response = await userApi.getByCompany(Number(cid));
+        setUsers(response.data);
+      } catch (error) {
+        console.error('Error fetching users:', error);
+      }
+    };
+
     fetchBuckets();
+    fetchUsers();
   }, [router]);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -46,13 +61,19 @@ export default function AddTaskPage() {
         router.push('/login');
         return;
       }
-
+      const uid = sessionStorage.getItem('uid');
+      const cid = sessionStorage.getItem('cid');
       const newTodo = await createToDo({
         Title: formData.title,
         Description: formData.description,
         BucketID: formData.bucketId ? Number(formData.bucketId) : undefined,
         DueDateTime: formData.dueDate ? new Date(formData.dueDate) : undefined,
         Priority: formData.priority,
+        AssignTo: formData.assignTo ? Number(formData.assignTo) : undefined,
+        AssgnBy: uid ? Number(uid) : undefined,
+        CID: cid ? Number(cid) : undefined,
+        CreatedBy: uid ? Number(uid) : undefined,
+        UpdatedBy: uid ? Number(uid) : undefined,
       });
 
       if (newTodo) {
@@ -147,6 +168,25 @@ export default function AddTaskPage() {
                 <option value="low">Low</option>
                 <option value="medium">Medium</option>
                 <option value="high">High</option>
+              </select>
+            </div>
+
+            <div>
+              <label htmlFor="assignTo" className="block text-sm font-medium text-gray-700">
+                Assign To (User)
+              </label>
+              <select
+                id="assignTo"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                value={formData.assignTo}
+                onChange={(e) => setFormData({ ...formData, assignTo: e.target.value })}
+              >
+                <option value="">Select user</option>
+                {users.map((user) => (
+                  <option key={user.UID} value={user.UID}>
+                    {user.Fname} {user.Lname} ({user.Email})
+                  </option>
+                ))}
               </select>
             </div>
 
