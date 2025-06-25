@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/Bucket'; 
+const API_URL = 'hrms-backend-production-3091.up.railway.app/Bucket'; 
 
 export interface Bucket {
   BucketId?: number;
