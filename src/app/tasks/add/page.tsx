@@ -76,6 +76,7 @@ export default function AddTaskPage() {
         UpdatedBy: uid ? Number(uid) : undefined,
       });
 
+      console.log(newTodo);
       if (newTodo) {
         router.push('/tasks');
       } else {
