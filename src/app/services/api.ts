@@ -29,6 +29,7 @@ export const userApi = {
   create: (data: Omit<User, 'UID'>) => axios.post<User>(`${API_BASE_URL}/user`, data),
   update: (id: number, data: Partial<User>) => axios.patch<User>(`${API_BASE_URL}/user/${id}`, data),
   delete: (id: number) => axios.delete(`${API_BASE_URL}/user/${id}`),
+  getByCompany: (cid: number) => axios.get<User[]>(`${API_BASE_URL}/user/company/${cid}`),
 };
 
 export const companyApi = {
