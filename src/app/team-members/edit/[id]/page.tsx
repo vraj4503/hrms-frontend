@@ -40,7 +40,7 @@ export default function EditTeamMemberPage({ params }: EditTeamMemberPageProps) 
 
     const fetchTeamMember = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/user/${id}`, {
+        const response = await fetch(`https://hrms-backend-production-3091.up.railway.app/user/${id}`, {
           headers: {
             'Authorization': `Bearer ${accessToken}`,
           },
