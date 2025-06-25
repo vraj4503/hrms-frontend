@@ -110,7 +110,7 @@ export default function EditTeamMemberPage({ params }: EditTeamMemberPageProps) 
         delete updatePayload.Password;
       }
 
-      const response = await fetch(`http://localhost:5000/user/${id}`, {
+      const response = await fetch(`https://hrms-backend-production-3091.up.railway.app/user/${id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
