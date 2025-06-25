@@ -72,7 +72,7 @@ export default function AddTeamMemberPage() {
         return;
       }
 
-      const response = await fetch('http://localhost:5000/user', {
+      const response = await fetch('https://hrms-backend-production-3091.up.railway.app/user', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
