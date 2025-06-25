@@ -28,7 +28,7 @@ export default function TeamMembersPage() {
     const fetchTeamMembers = async () => {
       try {
         
-        const response = await fetch('http://localhost:5000/user', {
+        const response = await fetch('https://hrms-backend-production-3091.up.railway.app/user', {
           headers: {
             'Authorization': `Bearer ${accessToken}`
           }
