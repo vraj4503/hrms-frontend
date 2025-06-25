@@ -74,6 +74,7 @@ export default function AddTaskPage() {
         CID: cid ? Number(cid) : undefined,
         CreatedBy: uid ? Number(uid) : undefined,
         UpdatedBy: uid ? Number(uid) : undefined,
+        StatusType: "A",
       });
 
       console.log(newTodo);
