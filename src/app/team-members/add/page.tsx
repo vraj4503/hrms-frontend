@@ -64,7 +64,21 @@ export default function AddTeamMemberPage() {
     e.preventDefault();
     setLoading(true);
     setError(null);
+    
+   const phoneRegex = /^\d{10}$/;
+  if (!phoneRegex.test(formData.Phone)) {
+    alert('Phone number must be exactly 10 digits.');
+    return;
+  }
 
+ 
+  const password = formData.Password;
+  const passwordRegex = /^(?=.*[0-9])(?=.*[\W_]).{6,24}$/;
+  if (!passwordRegex.test(password)) {
+    alert('Password must be 6-24 characters and include with atleast one symbol and one number.');
+    return;
+  }
+    
     try {
       const accessToken = sessionStorage.getItem('accessToken');
       if (!accessToken) {
