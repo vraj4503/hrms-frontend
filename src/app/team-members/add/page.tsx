@@ -64,7 +64,21 @@ export default function AddTeamMemberPage() {
     e.preventDefault();
     setLoading(true);
     setError(null);
+    
+   const phoneRegex = /^\d{10}$/;
+  if (!phoneRegex.test(formData.Phone)) {
+    alert('Phone number must be exactly 10 digits.');
+    return;
+  }
 
+ 
+  const password = formData.Password ?? '';
+  const passwordRegex = /^(?=.*[0-9])(?=.*[\W_]).{6,24}$/;
+  if (!passwordRegex.test(password)) {
+    alert('Password must be 6-24 characters and include with atleast one symbol and one number.');
+    return;
+  }
+    
     try {
       const accessToken = sessionStorage.getItem('accessToken');
       if (!accessToken) {
@@ -143,7 +157,6 @@ export default function AddTeamMemberPage() {
                 <label htmlFor="DOB" className="block text-sm font-medium text-gray-700">Date of Birth</label>
                 <input type="date" id="DOB" name="DOB" value={formData.DOB} onChange={handleChange} required className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" />
               </div>
-              
               <div>
                 <label htmlFor="DepartmentID" className="block text-sm font-medium text-gray-700">Department ID</label>
                 <input type="number" id="DepartmentID" name="DepartmentID" value={formData.DepartmentID} onChange={handleChange} required className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" />
