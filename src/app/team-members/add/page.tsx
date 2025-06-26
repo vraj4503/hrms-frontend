@@ -87,7 +87,7 @@ export default function AddTeamMemberPage() {
       }
 
       
-      const formattedDOB = formData.DOB ? new Date(formData.DOB).toISOString() : null;
+      const formattedDOB = formData.DOB ? formData.DOB : null; 
       
       const statusType = formData.StatusType === 'Active' ? 'A' : 'I';
       

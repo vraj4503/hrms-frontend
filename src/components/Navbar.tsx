@@ -16,11 +16,14 @@ const Navbar = () => {
     router.push('/login');
   };
 
+  const handleProfileClick = () => {
+    setIsProfileOpen(!isProfileOpen);
+  };
+
   return (
     <nav className="bg-white shadow-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
-          {/* Logo and Company Name */}
           <div className="flex items-center">
             <div className="flex-shrink-0 flex items-center">
               <Image
@@ -76,6 +79,7 @@ const Navbar = () => {
                       href="/profile"
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                       role="menuitem"
+                      onClick={handleProfileClick}
                     >
                       Your Profile
                     </Link>

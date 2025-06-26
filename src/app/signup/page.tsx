@@ -68,7 +68,7 @@ const SignupPage = () => {
 
       const companyData = await companyResponse.json();
       
-      const formattedDate = formData.DOB ? new Date(formData.DOB).toISOString() : '';
+      const formattedDate = formData.DOB ? formData.DOB : null; 
       
       const userResponse = await fetch('https://hrms-backend-production-3091.up.railway.app/user', {
         method: 'POST',

@@ -9,7 +9,7 @@ interface ToDo {
   Description: string;
   DueDateTime?: string;
   Priority?: string;
-  
+
 }
 
 export default function BucketTasksPage() {
@@ -28,7 +28,7 @@ export default function BucketTasksPage() {
           return;
         }
         const res = await fetch(
-          `https://hrms-backend-production-3091.up.railway.app/todo/bucket/${bucketId}`,
+          `https://hrms-backend-production-3091.up.railway.app/todos/bucket/${bucketId}`,
           { headers: { Authorization: `Bearer ${accessToken}` } }
         );
         const data = await res.json();
