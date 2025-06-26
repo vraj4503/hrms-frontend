@@ -13,7 +13,6 @@ const SignupPage = () => {
     Lname: '',
     Mname: '',
     DOB: '',
-    StatusType: 'A',
     DepartmentID: 1,
     UserType: 'Employee',
     Phone: '',
@@ -84,7 +83,7 @@ const SignupPage = () => {
           Lname: formData.Lname,
           Mname: formData.Mname || null,
           DOB: formattedDate,
-          StatusType: formData.StatusType === 'Active' ? 'A' : 'I',
+          StatusType:'A',
           DepartmentID: Number(formData.DepartmentID),
           UserType: formData.UserType,
           Phone: formData.Phone,
@@ -193,19 +192,6 @@ const SignupPage = () => {
                   onChange={handleInputChange}
                   required 
                 />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700">Status</label>
-                <select 
-                  id="StatusType" 
-                  name="StatusType" 
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-                  value={formData.StatusType}
-                  onChange={handleInputChange}
-                >
-                  <option value="Active">Active</option>
-                  <option value="Inactive">Inactive</option>
-                </select>
               </div>
             </div>
           </div>
