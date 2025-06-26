@@ -144,22 +144,8 @@ export default function AddTeamMemberPage() {
                 <input type="date" id="DOB" name="DOB" value={formData.DOB} onChange={handleChange} required className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" />
               </div>
               <div>
-                <label htmlFor="StatusType" className="block text-sm font-medium text-gray-700">Status Type</label>
-                <select id="StatusType" name="StatusType" value={formData.StatusType} onChange={handleChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                  <option value="Active">Active</option>
-                  <option value="Inactive">Inactive</option>
-                </select>
-              </div>
-              <div>
                 <label htmlFor="DepartmentID" className="block text-sm font-medium text-gray-700">Department ID</label>
                 <input type="number" id="DepartmentID" name="DepartmentID" value={formData.DepartmentID} onChange={handleChange} required className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" />
-              </div>
-              <div>
-                <label htmlFor="UserType" className="block text-sm font-medium text-gray-700">User Type</label>
-                <select id="UserType" name="UserType" value={formData.UserType} onChange={handleChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                  <option value="Admin">Admin</option>
-                  <option value="Employee">Employee</option>
-                </select>
               </div>
               <div>
                 <label htmlFor="Password" className="block text-sm font-medium text-gray-700">Password</label>
