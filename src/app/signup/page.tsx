@@ -46,7 +46,7 @@ const SignupPage = () => {
   const password = formData.Password;
   const passwordRegex = /^(?=.*[0-9])(?=.*[\W_]).{6,24}$/;
   if (!passwordRegex.test(password)) {
-    alert('Password must be 6-24 characters and include at least one symbol and one number.');
+    alert('Password must be 6-24 characters and include with atleast one symbol and one number.');
     return;
   }
 
