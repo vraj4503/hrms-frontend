@@ -34,7 +34,22 @@ const SignupPage = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     
+    const phoneRegex = /^\d{10}$/;
+  if (!phoneRegex.test(formData.Phone)) {
+    alert('Phone number must be exactly 10 digits.');
+    return;
+  }
+
+ 
+  const password = formData.Password;
+  const passwordRegex = /^(?=.*[0-9])(?=.*[\W_]).{6,24}$/;
+  if (!passwordRegex.test(password)) {
+    alert('Password must be 6-24 characters and include at least one symbol and one number.');
+    return;
+  }
+
     try {
       const companyResponse = await fetch('https://hrms-backend-production-3091.up.railway.app/company', {
         method: 'POST',
