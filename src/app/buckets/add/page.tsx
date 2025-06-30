@@ -37,7 +37,7 @@ export default function AddBucketPage() {
         throw new Error('Failed to create bucket');
       }
     } catch (error) {
-      console.error('Error creating bucket:', error);
+      console.error('Error creating bucket...:', error);
       alert('Failed to create bucket. Please try again.');
     } finally {
       setLoading(false);
