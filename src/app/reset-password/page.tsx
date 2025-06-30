@@ -1,7 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
 
-
 function RequestOtpForm({ onNext }: { onNext: (email: string) => void }) {
   const [email, setEmail] = useState("");
   const [msg, setMsg] = useState("");
