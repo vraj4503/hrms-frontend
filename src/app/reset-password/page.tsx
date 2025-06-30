@@ -1,7 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "https://hrms-backend-production-3091.up.railway.app";
 
 function RequestOtpForm({ onNext }: { onNext: (email: string) => void }) {
   const [email, setEmail] = useState("");
