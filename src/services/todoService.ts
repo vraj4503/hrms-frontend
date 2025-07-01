@@ -25,8 +25,8 @@ export interface ToDo {
   UpdatedBy?: number;
 }
 
-export const createToDo = async (todo: Partial<ToDo>): Promise<ToDo> => {
-  const response = await axios.post<ToDo>(API_URL, todo);
+export const createToDo = async (todo: Partial<ToDo>): Promise<any> => {
+  const response = await axios.post(API_URL, todo);
   return response.data;
 };
 

@@ -63,7 +63,7 @@ export default function AddTaskPage() {
       }
       const uid = sessionStorage.getItem('uid');
       const cid = sessionStorage.getItem('cid');
-      const newTodo = await createToDo({
+      const result = await createToDo({
         Title: formData.title,
         Description: formData.description,
         BucketID: formData.bucketId ? Number(formData.bucketId) : undefined,
@@ -77,8 +77,17 @@ export default function AddTaskPage() {
         StatusType: "A",
       });
 
-      console.log(newTodo);
-      if (newTodo) {
+      // result: { todo, whatsappStatus }
+      if (result) {
+        if (result.whatsappStatus === 'success') {
+          alert('WhatsApp notification sent successfully!');
+        } else if (result.whatsappStatus === 'unsuccess') {
+          alert('Failed to send WhatsApp notification.');
+        } else if (result.whatsappStatus === 'no_phone') {
+          alert('User has no phone number, WhatsApp notification not sent.');
+        } else {
+          alert('WhatsApp notification was not attempted.');
+        }
         router.push('/tasks');
       } else {
         throw new Error('Failed to create task');
