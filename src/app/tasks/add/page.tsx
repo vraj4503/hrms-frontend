@@ -19,6 +19,8 @@ export default function AddTaskPage() {
     priority: 'medium',
     assignTo: ''
   });
+  const [sendNotification, setSendNotification] = useState(false);
+  const [notificationTo, setNotificationTo] = useState('');
 
   useEffect(() => {
     const fetchBuckets = async () => {
@@ -75,19 +77,13 @@ export default function AddTaskPage() {
         CreatedBy: uid ? Number(uid) : undefined,
         UpdatedBy: uid ? Number(uid) : undefined,
         StatusType: "A",
+        ...(sendNotification && notificationTo
+          ? { NotificationTo: notificationTo }
+          : {}),
       });
 
       // result: { todo, whatsappStatus }
       if (result) {
-        if (result.whatsappStatus === 'success') {
-          alert('WhatsApp notification sent successfully!');
-        } else if (result.whatsappStatus === 'unsuccess') {
-          alert('Failed to send WhatsApp notification.');
-        } else if (result.whatsappStatus === 'no_phone') {
-          alert('User has no phone number, WhatsApp notification not sent.');
-        } else {
-          alert('WhatsApp notification was not attempted.');
-        }
         router.push('/tasks');
       } else {
         throw new Error('Failed to create task');
@@ -199,6 +195,32 @@ export default function AddTaskPage() {
                   </option>
                 ))}
               </select>
+            </div>
+
+            {/* Notification Option */}
+            <div>
+              <label className="flex items-center space-x-2">
+                <input
+                  type="checkbox"
+                  checked={sendNotification}
+                  onChange={e => setSendNotification(e.target.checked)}
+                />
+                <span>Send notification to another user?</span>
+              </label>
+              {sendNotification && (
+                <select
+                  className="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                  value={notificationTo}
+                  onChange={e => setNotificationTo(e.target.value)}
+                >
+                  <option value="">Select user</option>
+                  {users.map(user => (
+                    <option key={user.UID} value={user.UID}>
+                      {user.Fname} {user.Lname} ({user.Email})
+                    </option>
+                  ))}
+                </select>
+              )}
             </div>
 
             <div className="flex justify-end space-x-4">
