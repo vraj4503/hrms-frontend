@@ -75,7 +75,7 @@ export default function LoginPage() {
         {/* Left: Login Form */}
         <div className="w-full md:w-1/2 p-10 flex flex-col justify-center">
           <div className="mb-8 flex items-center space-x-2">
-            <Image src="/anantam-logo.png" alt="Anantam Logo" width={32} height={32} />
+{/*             <Image src="/anantam-logo.png" alt="Anantam Logo" width={32} height={32} /> */}
             <span className="text-2xl font-bold text-[#7b61ff]">Anantam</span>
           </div>
           <h2 className="text-3xl font-bold mb-2">Welcome Back</h2>
