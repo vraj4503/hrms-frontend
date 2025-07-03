@@ -103,10 +103,10 @@ const SignupPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-2xl mx-auto">
-        <h1 className="text-3xl font-bold text-center text-gray-900 mb-8">Create Your Account</h1>
-        <form onSubmit={handleSubmit} className="space-y-8 bg-white p-8 rounded-lg shadow">
+    <main className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 p-4">
+      <div className="w-full max-w-2xl bg-white rounded-2xl shadow-2xl p-8">
+        <h1 className="text-3xl font-extrabold text-gray-800 mb-8 text-center">Create Your Account</h1>
+        <form onSubmit={handleSubmit} className="space-y-8">
           <div className="space-y-6">
             <h2 className="text-xl font-semibold text-gray-900">Personal Information</h2>
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
@@ -253,7 +253,7 @@ const SignupPage = () => {
           </div>
         </form>
       </div>
-    </div>
+    </main>
   );
 };
 
