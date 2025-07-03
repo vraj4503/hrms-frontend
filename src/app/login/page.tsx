@@ -78,7 +78,7 @@ export default function LoginPage() {
 {/*             <Image src="/anantam-logo.png" alt="Anantam Logo" width={32} height={32} /> */}
             <span className="text-2xl font-bold text-[#7b61ff]">Anantam</span>
           </div>
-          <h2 className="text-3xl font-bold mb-2">Welcome Back</h2>
+          <h2 className="text-3xl font-bold mb-2">Welcome </h2>
           <p className="mb-6 text-gray-500">Login to your account</p>
          
           <div className="flex items-center mb-4">

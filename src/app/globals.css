@@ -12,7 +12,3 @@ body {
   background: rgb(var(--background-rgb));
 }
 
-img {
-  width: 200;
-  height: 200;
-}
