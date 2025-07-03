@@ -120,7 +120,7 @@ export default function LoginPage() {
           </p>
         </div>
         {/* Right: Illustration */}
-        <div className="hidden md:flex w-1/2 bg-[#fbfbfb] items-center justify-center">
+        <div className="hidden md:flex w-1/2 bg-white items-center justify-center">
           <Image
             src="/login-illustration.png"
             alt="Login Illustration"
