@@ -21,7 +21,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white shadow-md">
+    <nav className="bg-[#7861ff]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
@@ -33,7 +33,7 @@ const Navbar = () => {
                 height={40}
                 className="h-8 w-auto"
               />
-              <span className="ml-2 text-xl font-semibold text-gray-800">
+              <span className="ml-2 text-xl font-semibold text-white">
                 HRMS
               </span>
             </div>
@@ -44,7 +44,7 @@ const Navbar = () => {
             <div className="relative">
               <button
                 onClick={() => setIsProfileOpen(!isProfileOpen)}
-                className="flex items-center space-x-2 text-gray-700 hover:text-gray-900 focus:outline-none"
+                className="flex items-center space-x-2 text-white hover:text-gray-900 focus:outline-none"
               >
                 <div className="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center">
                   <span className="text-sm font-medium text-gray-600">VP</span>
