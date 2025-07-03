@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = "http://localhost:5000/todos";
+const API_URL = "https://hrms-backend-production-3091.up.railway.app/todos";
 
 export interface ToDo {
   ToDoId?: number;
