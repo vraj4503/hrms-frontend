@@ -123,12 +123,18 @@ export default function ResetPasswordPage() {
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <div className="w-full max-w-md p-8 bg-white rounded shadow-md">
+    <main className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 p-4">
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-2xl p-8">
         {step === 1 && <RequestOtpForm onNext={e => { setEmail(e); setStep(2); }} />}
         {step === 2 && <VerifyOtpForm email={email} onNext={o => { setOtp(o); setStep(3); }} />}
         {step === 3 && <ResetPasswordForm email={email} otp={otp} />}
+        <p className="mt-6 text-center text-gray-500 text-sm">
+          Remembered your password?{' '}
+          <a href="/login" className="text-indigo-600 hover:underline font-semibold">
+            Log in
+          </a>
+        </p>
       </div>
-    </div>
+    </main>
   );
 } 
