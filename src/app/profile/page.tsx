@@ -32,18 +32,29 @@ export default function ProfilePage() {
   if (loading) return <div className="p-8">Loading...</div>;
   if (!user) return <div className="p-8">User not found.</div>;
 
+  // Helper to get initials
+  const getInitials = (first: string, last: string) => {
+    return `${first?.[0] || ''}${last?.[0] || ''}`.toUpperCase();
+  };
+
   return (
-    <main className="min-h-screen bg-gray-50 p-8">
-      <div className="max-w-xl mx-auto bg-white rounded-lg shadow-md p-6">
-        <h1 className="text-2xl font-bold mb-4">Your Profile</h1>
-        <div className="space-y-2">
-          <div><strong>First Name:</strong> {user.Fname}</div>
-          <div><strong>Last Name:</strong> {user.Lname}</div>
-          <div><strong>Middle Name:</strong> {user.Mname}</div>
-          <div><strong>Phone:</strong> {user.Phone}</div>
-          <div><strong>Email:</strong> {user.Email}</div>
-          <div><strong>Date of Birth:</strong> {user.DOB}</div>
-          <div><strong>User Type:</strong> {user.UserType}</div>
+    <main className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 p-4">
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-2xl p-8 flex flex-col items-center">
+        {/* Avatar */}
+        <div className="w-24 h-24 rounded-full bg-gradient-to-br from-indigo-400 to-purple-400 flex items-center justify-center text-white text-4xl font-bold mb-4 shadow-lg">
+          {getInitials(user.Fname, user.Lname)}
+        </div>
+        {/* Name */}
+        <h1 className="text-2xl font-extrabold text-gray-800 mb-1">{user.Fname} {user.Lname}</h1>
+        <p className="text-gray-500 mb-6">{user.Email}</p>
+        {/* Info */}
+        <div className="w-full space-y-3">
+          <div className="flex justify-between text-gray-700"><span className="font-semibold">First Name:</span> <span>{user.Fname}</span></div>
+          <div className="flex justify-between text-gray-700"><span className="font-semibold">Last Name:</span> <span>{user.Lname}</span></div>
+          <div className="flex justify-between text-gray-700"><span className="font-semibold">Middle Name:</span> <span>{user.Mname}</span></div>
+          <div className="flex justify-between text-gray-700"><span className="font-semibold">Phone:</span> <span>{user.Phone}</span></div>
+          <div className="flex justify-between text-gray-700"><span className="font-semibold">Date of Birth:</span> <span>{user.DOB}</span></div>
+          <div className="flex justify-between text-gray-700"><span className="font-semibold">User Type:</span> <span>{user.UserType}</span></div>
         </div>
       </div>
     </main>

@@ -84,20 +84,24 @@ export default function LoginPage() {
           <div className="flex items-center mb-4">
             
           </div>
-          <form>
+          <form onSubmit={e => { e.preventDefault(); handleLogin(); }}>
             <input
               type="email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
               placeholder="Email Address"
               className="w-full mb-3 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#7b61ff]"
             />
             <input
               type="password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
               placeholder="Password"
               className="w-full mb-3 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#7b61ff]"
             />
             <div className="flex justify-between items-center mb-4">
              
-              <Link href="/forgot-password" className="text-[#7b61ff] text-sm hover:underline">
+              <Link href="/reset-password" className="text-[#7b61ff] text-sm hover:underline">
                 Forgot your password?
               </Link>
             </div>
@@ -123,6 +127,7 @@ export default function LoginPage() {
             width={350}
             height={350}
             className="object-contain"
+            priority
           />
         </div>
       </div>
