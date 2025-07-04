@@ -30,6 +30,7 @@ export const userApi = {
   update: (id: number, data: Partial<User>) => axios.patch<User>(`${API_BASE_URL}/user/${id}`, data),
   delete: (id: number) => axios.delete(`${API_BASE_URL}/user/${id}`),
   getByCompany: (cid: number) => axios.get<User[]>(`${API_BASE_URL}/user/company/${cid}`),
+  checkEmail: (email: string) => axios.post<{ exists: boolean; message?: string }>(`${API_BASE_URL}/user/check-email`, { email }),
 };
 
 export const companyApi = {

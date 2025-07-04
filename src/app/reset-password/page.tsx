@@ -8,6 +8,18 @@ function RequestOtpForm({ onNext }: { onNext: (email: string) => void }) {
   const [msg, setMsg] = useState("");
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+   
+    const checkRes = await fetch("https://hrms-backend-production-3091.up.railway.app/user/check-email", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email }),
+    });
+    const checkData = await checkRes.json();
+    if (!checkData.exists) {
+      setMsg(checkData.message || "Email ID not found");
+      return;
+    }
+   
     const res = await fetch("https://hrms-backend-production-3091.up.railway.app/user/request-password-reset", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
