@@ -11,10 +11,10 @@ const SECRET_KEY = 'Vraj123';
 const createEncryptedToken = (token: string) => {
   const timestamp = Date.now();
   const combinedString = `${token}_${timestamp}`;
-  console.log('Frontend Encrypt: Combined string (JWT_timestamp):', combinedString);
+  // console.log('Frontend Encrypt: Combined string (JWT_timestamp):', combinedString);
   const encrypted = CryptoJS.AES.encrypt(combinedString, SECRET_KEY);
   const encryptedString = encrypted.toString();
-  console.log('Frontend Encrypt: CryptoJS encrypted output:', encryptedString);
+  // console.log('Frontend Encrypt: CryptoJS encrypted output:', encryptedString);
   return encryptedString;
 };
 
