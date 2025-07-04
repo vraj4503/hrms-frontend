@@ -114,34 +114,52 @@ export default function BucketsPage() {
           <div className="text-center py-4 text-gray-500">No buckets found</div>
         ) : (
           <div className="grid gap-6 md:grid-cols-2">
-            {buckets.map((bucket) => (
-              <div
-                key={bucket.BucketId}
-                className="border rounded-xl p-6 bg-gradient-to-br from-white via-blue-50 to-green-50 hover:shadow-xl transition-shadow cursor-pointer flex flex-col justify-between min-h-[140px]"
-                onClick={() => router.push(`/buckets/${bucket.BucketId}`)}
-              >
-                <div className="flex justify-between items-start">
-                  <div>
-                    <h3 className="text-xl font-bold text-blue-700 flex items-center gap-2">
-                      <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M3 7h18M3 12h18M3 17h18" /></svg>
-                      {bucket.BucketName}
-                    </h3>
-                    <p className="text-gray-600 mt-2">{bucket.BucketDescription}</p>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        router.push(`/tasks/add?bucketId=${bucket.BucketId}`);
-                      }}
-                      className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm hover:bg-green-200 font-semibold"
-                    >
-                      Add Task
-                    </button>
-                  </div>
+          {buckets.map((bucket) => (
+            <div
+              key={bucket.BucketId}
+              className="border rounded-xl p-6 bg-gradient-to-br from-white via-blue-50 to-green-50 hover:shadow-xl transition-shadow cursor-pointer flex flex-col justify-between min-h-[140px]"
+              onClick={() => router.push(`/buckets/${bucket.BucketId}`)}
+            >
+              <div className="flex justify-between items-start">
+                <div>
+                  <h3 className="text-xl font-bold text-blue-700 flex items-center gap-2">
+                    <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M3 7h18M3 12h18M3 17h18" /></svg>
+                    {bucket.BucketName}
+                  </h3>
+                  <p className="text-gray-600 mt-2">{bucket.BucketDescription}</p>
+                </div>
+                <div className="flex flex-col items-end gap-2">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      alert('Edit Bucket feature coming soon!');
+                    }}
+                    className="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm hover:bg-yellow-200 font-semibold"
+                  >
+                    Edit Bucket
+                  </button>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      alert('Delete Bucket feature coming soon!');
+                    }}
+                    className="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm hover:bg-red-200 font-semibold"
+                  >
+                    Delete Bucket
+                  </button>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      router.push(`/tasks/add?bucketId=${bucket.BucketId}`);
+                    }}
+                    className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm hover:bg-green-200 font-semibold"
+                  >
+                    Add Task
+                  </button>
                 </div>
               </div>
-            ))}
+            </div>
+          ))}
           </div>
         )}
       </div>
