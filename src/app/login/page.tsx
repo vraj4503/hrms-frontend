@@ -6,6 +6,7 @@ import CryptoJS from 'crypto-js';
 import Image from 'next/image';
 import Link from 'next/link';
 
+
 const SECRET_KEY = 'Vraj123';
 
 const createEncryptedToken = (token: string) => {
