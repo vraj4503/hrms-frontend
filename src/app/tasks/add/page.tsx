@@ -34,7 +34,7 @@ export default function AddTaskPage() {
         const data = await getAllBuckets();
         setBuckets(data);
       } catch (error) {
-        console.error('Error fetching buckets:', error);
+        // console.error('Error fetching buckets:', error);
       }
     };
 
@@ -45,7 +45,7 @@ export default function AddTaskPage() {
         const response = await userApi.getByCompany(Number(cid));
         setUsers(response.data);
       } catch (error) {
-        console.error('Error fetching users:', error);
+        // console.error('Error fetching users:', error);
       }
     };
 
@@ -89,7 +89,7 @@ export default function AddTaskPage() {
         throw new Error('Failed to create task');
       }
     } catch (error) {
-      console.error('Error creating task:', error);
+      // console.error('Error creating task:', error);
       alert('Failed to create task. Please try again.');
     } finally {
       setLoading(false);

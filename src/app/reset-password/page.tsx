@@ -43,7 +43,7 @@ function RequestOtpForm({ onNext }: { onNext: (email: string) => void }) {
 function VerifyOtpForm({ email, onNext }: { email: string, onNext: (otp: string) => void }) {
   const [otp, setOtp] = useState("");
   const [msg, setMsg] = useState("");
-  const [timeLeft, setTimeLeft] = useState(180); // 3 minutes in seconds
+  const [timeLeft, setTimeLeft] = useState(180); 
   useEffect(() => {
     if (timeLeft <= 0) return;
     const timer = setInterval(() => setTimeLeft(t => t - 1), 1000);

@@ -46,7 +46,7 @@ export default function EditTaskPage({ params }: EditTaskPageProps) {
         });
         setBuckets(bucketsData);
       } catch (err) {
-        console.error('Error fetching task or buckets:', err);
+        // console.error('Error fetching task or buckets:', err);
         setError('Failed to load task for editing.');
       } finally {
         setLoading(false);
@@ -79,7 +79,7 @@ export default function EditTaskPage({ params }: EditTaskPageProps) {
 
       router.push('/tasks');
     } catch (err) {
-      console.error('Error updating task:', err);
+      // console.error('Error updating task:', err);
       alert('Failed to update task. Please try again.');
     } finally {
       setLoading(false);
@@ -103,6 +103,7 @@ export default function EditTaskPage({ params }: EditTaskPageProps) {
   }
 
   return (
+
     <main className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 p-4">
       <div className="w-full max-w-xl bg-white/90 backdrop-blur-md rounded-3xl shadow-2xl p-10 border border-blue-100 animate-fade-in">
         <h1 className="text-4xl font-extrabold text-blue-700 mb-8 text-center drop-shadow">Edit Task</h1>
@@ -184,6 +185,7 @@ export default function EditTaskPage({ params }: EditTaskPageProps) {
             </button>
           </div>
         </form>
+
       </div>
     </main>
   );

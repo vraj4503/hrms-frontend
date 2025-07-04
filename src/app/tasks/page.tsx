@@ -29,7 +29,7 @@ export default function TasksPage() {
         setTodos(todosData);
         setBuckets(bucketsData);
       } catch (err) {
-        console.error('Error fetching tasks or buckets:', err);
+        // console.error('Error fetching tasks or buckets:', err);
         setError('Failed to load tasks or buckets.');
       } finally {
         setLoading(false);
@@ -51,7 +51,7 @@ export default function TasksPage() {
         await deleteToDo(id);
         setTodos(todos.filter(todo => todo.ToDoId !== id));
       } catch (err) {
-        console.error('Error deleting task:', err);
+        // console.error('Error deleting task:', err);
         alert('Failed to delete task. Please try again.');
       }
     }
@@ -64,7 +64,6 @@ export default function TasksPage() {
       </main>
     );
   }
-
   if (error) {
     return (
       <main className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 p-4">
@@ -72,7 +71,6 @@ export default function TasksPage() {
       </main>
     );
   }
-
   return (
     <main className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 p-4">
       <div className="w-full max-w-4xl bg-white rounded-2xl shadow-2xl p-8">
