@@ -23,6 +23,8 @@ const SignupPage = () => {
     strength: '',
   });
 
+  const [invalidFields, setInvalidFields] = useState<string[]>([]);
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -40,6 +42,26 @@ const SignupPage = () => {
     return;
   }
 
+  const requiredFields = [
+    'Email', 'Password', 'Fname', 'Lname', 'Mname', 'DOB', 'DepartmentID', 'UserType', 'Phone', 'companyName', 'location', 'strength'
+  ];
+  const emptyFields = requiredFields.filter(field => !formData[field as keyof typeof formData]);
+  setInvalidFields(emptyFields);
+
+  if (emptyFields.length > 0) {
+    return; // Stop submission if any field is empty
+  }
+
+  const dob = new Date(formData.DOB);
+  const today = new Date();
+  const age = today.getFullYear() - dob.getFullYear();
+  const m = today.getMonth() - dob.getMonth();
+  const isBirthdayPassed = m > 0 || (m === 0 && today.getDate() >= dob.getDate());
+  const actualAge = isBirthdayPassed ? age : age - 1;
+  if (isNaN(dob.getTime()) || actualAge < 18) {
+    alert('You must be at least 18 years old to sign up.');
+    return;
+  }
  
   const password = formData.Password;
   const passwordRegex = /^(?=.*[0-9])(?=.*[\W_]).{6,24}$/;
@@ -115,7 +137,7 @@ const SignupPage = () => {
                 <input 
                   type="text" 
                   name="Fname" 
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                  className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 ${invalidFields.includes('Fname') ? 'border-red-500' : ''}`}
                   placeholder="Enter your first name"
                   value={formData.Fname}
                   onChange={handleInputChange}
@@ -127,7 +149,7 @@ const SignupPage = () => {
                 <input 
                   type="text" 
                   name="Mname" 
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                  className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 ${invalidFields.includes('Fname') ? 'border-red-500' : ''}`}
                   placeholder="Enter your middle name (optional)"
                   value={formData.Mname}
                   onChange={handleInputChange}
@@ -138,7 +160,7 @@ const SignupPage = () => {
                 <input 
                   type="text" 
                   name="Lname" 
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                  className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 ${invalidFields.includes('Fname') ? 'border-red-500' : ''}`}
                   placeholder="Enter your last name"
                   value={formData.Lname}
                   onChange={handleInputChange}
@@ -150,7 +172,7 @@ const SignupPage = () => {
                 <input 
                   type="date" 
                   name="DOB" 
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                  className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 ${invalidFields.includes('Fname') ? 'border-red-500' : ''}`}
                   value={formData.DOB}
                   onChange={handleInputChange}
                   required 
@@ -161,7 +183,7 @@ const SignupPage = () => {
                 <input 
                   type="email" 
                   name="Email" 
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                  className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 ${invalidFields.includes('Fname') ? 'border-red-500' : ''}`}
                   placeholder="Enter your email address"
                   value={formData.Email}
                   onChange={handleInputChange}
@@ -173,7 +195,7 @@ const SignupPage = () => {
                 <input 
                   type="tel" 
                   name="Phone" 
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                  className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 ${invalidFields.includes('Fname') ? 'border-red-500' : ''}`}
                   placeholder="Enter your phone number"
                   value={formData.Phone}
                   onChange={handleInputChange}
@@ -185,7 +207,7 @@ const SignupPage = () => {
                 <input 
                   type="password" 
                   name="Password" 
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                  className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 ${invalidFields.includes('Fname') ? 'border-red-500' : ''}`}
                   placeholder="Create a strong password"
                   value={formData.Password}
                   onChange={handleInputChange}
@@ -203,7 +225,7 @@ const SignupPage = () => {
                 <input 
                   type="text" 
                   name="companyName" 
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                  className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 ${invalidFields.includes('Fname') ? 'border-red-500' : ''}`}
                   placeholder="Enter company name"
                   value={formData.companyName}
                   onChange={handleInputChange}
@@ -215,7 +237,7 @@ const SignupPage = () => {
                 <input 
                   type="text" 
                   name="location" 
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                  className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 ${invalidFields.includes('Fname') ? 'border-red-500' : ''}`}
                   placeholder="Enter company location"
                   value={formData.location}
                   onChange={handleInputChange}
@@ -224,15 +246,21 @@ const SignupPage = () => {
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700">Company Size</label>
-                <input 
-                  type="text" 
-                  name="strength" 
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-                  placeholder="Enter company size"
+                <select
+                  name="strength"
+                  className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 ${invalidFields.includes('strength') ? 'border-red-500' : ''}`}
                   value={formData.strength}
                   onChange={handleInputChange}
                   required
-                />
+                >
+                  <option value="">Select company size</option>
+                  <option value="0-8">0-8</option>
+                  <option value="9-12">9-12</option>
+                  <option value="13-20">13-20</option>
+                  <option value="21-50">21-50</option>
+                  <option value="51-100">51-100</option>
+                  <option value="100+">100+</option>
+                </select>
               </div>
             </div>
           </div>
