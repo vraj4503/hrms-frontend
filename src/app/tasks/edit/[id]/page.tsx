@@ -46,7 +46,7 @@ export default function EditTaskPage({ params }: EditTaskPageProps) {
         });
         setBuckets(bucketsData);
       } catch (err) {
-        console.error('Error fetching task or buckets:', err);
+        // console.error('Error fetching task or buckets:', err);
         setError('Failed to load task for editing.');
       } finally {
         setLoading(false);
@@ -79,7 +79,7 @@ export default function EditTaskPage({ params }: EditTaskPageProps) {
 
       router.push('/tasks');
     } catch (err) {
-      console.error('Error updating task:', err);
+      // console.error('Error updating task:', err);
       alert('Failed to update task. Please try again.');
     } finally {
       setLoading(false);
@@ -107,7 +107,6 @@ export default function EditTaskPage({ params }: EditTaskPageProps) {
       <div className="max-w-2xl mx-auto">
         <div className="bg-white rounded-lg shadow-md p-6">
           <h1 className="text-3xl font-bold text-gray-900 mb-6">Edit Task</h1>
-          
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label htmlFor="title" className="block text-sm font-medium text-gray-700">
@@ -122,7 +121,6 @@ export default function EditTaskPage({ params }: EditTaskPageProps) {
                 onChange={(e) => setFormData({ ...formData, Title: e.target.value })}
               />
             </div>
-
             <div>
               <label htmlFor="description" className="block text-sm font-medium text-gray-700">
                 Description
@@ -135,7 +133,6 @@ export default function EditTaskPage({ params }: EditTaskPageProps) {
                 onChange={(e) => setFormData({ ...formData, Description: e.target.value })}
               />
             </div>
-
             <div>
               <label htmlFor="bucketId" className="block text-sm font-medium text-gray-700">
                 Bucket
@@ -144,8 +141,7 @@ export default function EditTaskPage({ params }: EditTaskPageProps) {
                 id="bucketId"
                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                 value={formData.BucketID || ''}
-                onChange={(e) => setFormData({ ...formData, BucketID: Number(e.target.value) || undefined })}
-              >
+                onChange={(e) => setFormData({ ...formData, BucketID: Number(e.target.value) || undefined })}>
                 <option value="">Select a bucket</option>
                 {buckets.map((bucket) => (
                   <option key={bucket.BucketId} value={bucket.BucketId}>
@@ -154,7 +150,6 @@ export default function EditTaskPage({ params }: EditTaskPageProps) {
                 ))}
               </select>
             </div>
-
             <div>
               <label htmlFor="dueDate" className="block text-sm font-medium text-gray-700">
                 Due Date
@@ -167,7 +162,6 @@ export default function EditTaskPage({ params }: EditTaskPageProps) {
                 onChange={(e) => setFormData({ ...formData, DueDateTime: e.target.value ? new Date(e.target.value) : undefined })}
               />
             </div>
-
             <div>
               <label htmlFor="priority" className="block text-sm font-medium text-gray-700">
                 Priority
@@ -183,7 +177,6 @@ export default function EditTaskPage({ params }: EditTaskPageProps) {
                 <option value="high">High</option>
               </select>
             </div>
-
             <div className="flex justify-end space-x-4">
               <button
                 type="button"

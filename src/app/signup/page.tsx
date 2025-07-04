@@ -97,7 +97,7 @@ const SignupPage = () => {
 
       router.push('/login');
     } catch (error) {
-      console.error('Error during signup:', error);
+      // console.error('Error during signup:', error);
       alert('Failed to create account. Please try again.');
     }
   };

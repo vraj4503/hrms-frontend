@@ -108,7 +108,7 @@ export default function AddTeamMemberPage() {
         CreatedBy: formData.CreatedBy,
       };
 
-      console.log('Payload:', payload);
+      // console.log('Payload:', payload);
 
       const response = await fetch("https://hrms-backend-production-3091.up.railway.app/user/team-member", {
         method: 'POST',
@@ -126,7 +126,7 @@ export default function AddTeamMemberPage() {
         setError(errorData.message || 'Failed to add team member.');
       }
     } catch (err) {
-      console.error('Error adding team member:', err);
+      // console.error('Error adding team member:', err);
       setError('An error occurred while adding team member.');
     } finally {
       setLoading(false);

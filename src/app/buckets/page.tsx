@@ -24,7 +24,7 @@ export default function BucketsPage() {
         const data = await getAllBuckets();
         setBuckets(data);
       } catch (error) {
-        console.error('Error fetching buckets:', error);
+        // console.error('Error fetching buckets:', error);
       } finally {
         setLoading(false);
       }
@@ -46,7 +46,7 @@ export default function BucketsPage() {
       setNewBucketName('');
       setNewBucketDescription('');
     } catch (error) {
-      console.error('Error creating bucket:', error);
+      // console.error('Error creating bucket:', error);
     } finally {
       setIsAddingBucket(false);
     }

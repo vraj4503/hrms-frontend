@@ -60,11 +60,11 @@ export default function EditTeamMemberPage({ params }: EditTeamMemberPageProps) 
             Phone: data.Phone,
           });
         } else {
-          console.error('Failed to fetch team member');
+          // console.error('Failed to fetch team member');
           setError('Failed to load team member data.');
         }
       } catch (err) {
-        console.error('Error fetching team member:', err);
+        // console.error('Error fetching team member:', err);
         setError('An error occurred while loading data.');
       } finally {
         setLoading(false);
@@ -126,7 +126,7 @@ export default function EditTeamMemberPage({ params }: EditTeamMemberPageProps) 
         setError(errorData.message || 'Failed to update team member.');
       }
     } catch (err) {
-      console.error('Error updating team member:', err);
+      // console.error('Error updating team member:', err);
       setError('An error occurred while updating team member.');
     } finally {
       setLoading(false);
