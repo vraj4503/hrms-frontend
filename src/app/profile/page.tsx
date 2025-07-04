@@ -1,8 +1,9 @@
 'use client';
-
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 export default function ProfilePage() {
+  const router = useRouter();
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
@@ -40,6 +41,12 @@ export default function ProfilePage() {
   return (
     <main className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 p-4">
       <div className="w-full max-w-md bg-white rounded-2xl shadow-2xl p-8 flex flex-col items-center">
+        <button
+          onClick={() => router.push('/dashboard')}
+          className="self-start mb-6 px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition font-semibold shadow"
+        >
+          &larr; Back to Dashboard
+        </button>
         <div className="w-24 h-24 rounded-full bg-gradient-to-br from-indigo-400 to-purple-400 flex items-center justify-center text-white text-4xl font-bold mb-4 shadow-lg">
           {getInitials(user.Fname, user.Lname)}
         </div>
