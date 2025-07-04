@@ -36,6 +36,20 @@ export default function AddTeamMemberPage() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const errorMsg = params.get('error');
+      if (errorMsg) {
+        setError(errorMsg);
+        
+        const url = new URL(window.location.href);
+        url.searchParams.delete('error');
+        window.history.replaceState({}, '', url.toString());
+      }
+    }
+  }, []);
+
+  useEffect(() => {
     const cid = sessionStorage.getItem('cid');
     const uid = sessionStorage.getItem('uid');
     if (cid) {
@@ -64,6 +78,52 @@ export default function AddTeamMemberPage() {
     e.preventDefault();
     setLoading(true);
     setError(null);
+
+    // Validate required fields
+    if (!formData.Fname || !formData.Lname || !formData.DOB || !formData.DepartmentID || !formData.Email || !formData.Phone) {
+      alert('Please fill in all required fields.'); 
+      setLoading(false);
+      return;
+    }
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.Email)) {
+      alert('Please enter a valid email address.');
+      setLoading(false);
+      return;
+    }
+    // Validate date of birth and age
+    if (!formData.DOB) {
+      alert('Please enter your date of birth.');
+      setLoading(false);
+      return;
+    }
+    if (new Date(formData.DOB) > new Date()) {
+      alert('Date of birth cannot be in the future.');
+      setLoading(false);
+      return;
+    }
+    // Calculate age and validate
+    if (!formData.DOB) {
+      alert('Please enter your date of birth.');
+      return;
+    }
+  if (formData.DOB.length < 10) {
+      alert('Date of birth must be at least 10 characters long.');
+      return;
+    }
+
+
+    const dob = new Date(formData.DOB);
+  const today = new Date();
+  const age = today.getFullYear() - dob.getFullYear();
+  const m = today.getMonth() - dob.getMonth();
+  const isBirthdayPassed = m > 0 || (m === 0 && today.getDate() >= dob.getDate());
+  const actualAge = isBirthdayPassed ? age : age - 1;
+  if (isNaN(dob.getTime()) || actualAge < 18) {
+    alert('You must be at least 18 years old to sign up.');
+    return;
+  }
     
    const phoneRegex = /^\d{10}$/;
   if (!phoneRegex.test(formData.Phone)) {
@@ -127,7 +187,8 @@ export default function AddTeamMemberPage() {
       }
     } catch (err) {
       // console.error('Error adding team member:', err);
-      setError('An error occurred while adding team member.');
+      router.replace(`/team-members/add?error=${encodeURIComponent('An error occurred while adding team member.')}`);
+      window.location.reload();
     } finally {
       setLoading(false);
     }
