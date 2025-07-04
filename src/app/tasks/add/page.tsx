@@ -21,6 +21,7 @@ export default function AddTaskPage() {
   });
   const [sendNotification, setSendNotification] = useState(false);
   const [notificationTo, setNotificationTo] = useState('');
+  const [dueDateError, setDueDateError] = useState('');
 
   useEffect(() => {
     const fetchBuckets = async () => {
@@ -55,7 +56,18 @@ export default function AddTaskPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setDueDateError('');
     setLoading(true);
+
+    // Due date validation
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const due = formData.dueDate ? new Date(formData.dueDate) : null;
+    if (!due || due <= today) {
+      setDueDateError('Due date must be after today.');
+      setLoading(false);
+      return;
+    }
 
     try {
       const accessToken = sessionStorage.getItem('accessToken');
@@ -130,6 +142,7 @@ export default function AddTaskPage() {
             <textarea
               id="description"
               rows={4}
+              required
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
               value={formData.description}
               onChange={(e) => setFormData({ ...formData, description: e.target.value })}
@@ -141,6 +154,7 @@ export default function AddTaskPage() {
             </label>
             <select
               id="bucketId"
+              required
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
               value={formData.bucketId}
               onChange={(e) => setFormData({ ...formData, bucketId: e.target.value })}
@@ -160,10 +174,13 @@ export default function AddTaskPage() {
             <input
               type="date"
               id="dueDate"
+              required
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
               value={formData.dueDate}
               onChange={(e) => setFormData({ ...formData, dueDate: e.target.value })}
+              min={new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString().split('T')[0]}
             />
+            {dueDateError && <div className="text-red-600 text-sm mt-1">{dueDateError}</div>}
           </div>
           <div>
             <label htmlFor="priority" className="block text-sm font-medium text-gray-700">
@@ -171,6 +188,7 @@ export default function AddTaskPage() {
             </label>
             <select
               id="priority"
+              required
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
               value={formData.priority}
               onChange={(e) => setFormData({ ...formData, priority: e.target.value })}
@@ -186,6 +204,7 @@ export default function AddTaskPage() {
             </label>
             <select
               id="assignTo"
+              required
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
               value={formData.assignTo}
               onChange={(e) => setFormData({ ...formData, assignTo: e.target.value })}

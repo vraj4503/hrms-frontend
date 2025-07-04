@@ -62,7 +62,7 @@ export default function LoginPage() {
         
         router.push('/dashboard');
       } else {
-        setError('Invalid credentials');
+        setError('Invalid Credentials');
       }
     } catch (err) {
       setError('An error occurred while logging in');
@@ -105,6 +105,9 @@ export default function LoginPage() {
                 Forgot your password?
               </Link>
             </div>
+            {error && (
+              <div className="mb-3 text-red-600 font-semibold text-center animate-pulse">{error}</div>
+            )}
             <button
               type="submit"
               className="w-full bg-[#7b61ff] text-white py-2 rounded-md font-semibold hover:bg-[#6a4ee6] transition"
