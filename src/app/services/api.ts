@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'https://hrms-backend-production-3091.up.railway.app';
+const API_BASE_URL = 'https://hrms-backend-murex.vercel.app/';
 
 export interface User {
   UID: number;
