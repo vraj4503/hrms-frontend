@@ -28,7 +28,7 @@ export default function BucketTasksPage() {
           return;
         }
         const res = await fetch(
-          `https://hrms-backend-production-3091.up.railway.app/todos/bucket/${bucketId}`,
+          `https://hrms-backend-mv05.onrender.com/todos/bucket/${bucketId}`,
           { headers: { Authorization: `Bearer ${accessToken}` } }
         );
         const data = await res.json();
