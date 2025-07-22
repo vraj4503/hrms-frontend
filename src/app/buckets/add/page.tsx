@@ -22,7 +22,7 @@ export default function AddBucketPage() {
         return;
       }
 
-      const response = await fetch('https://hrms-backend-production-3091.up.railway.app/Bucket', {
+      const response = await fetch('https://hrms-backend-mv05.onrender.com/Bucket', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
