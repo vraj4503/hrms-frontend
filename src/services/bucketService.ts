@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = "https://hrms-backend-production-3091.up.railway.app/Bucket";
+const API_URL = "https://hrms-backend-mv05.onrender.com/Bucket";
 
 export interface Bucket {
   BucketId?: number;
