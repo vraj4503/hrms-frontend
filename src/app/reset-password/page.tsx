@@ -9,7 +9,7 @@ function RequestOtpForm({ onNext }: { onNext: (email: string) => void }) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
    
-    const checkRes = await fetch("https://hrms-backend-production-3091.up.railway.app/user/check-email", {
+    const checkRes = await fetch("https://hrms-backend-mv05.onrender.com/user/check-email", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email }),
@@ -20,7 +20,7 @@ function RequestOtpForm({ onNext }: { onNext: (email: string) => void }) {
       return;
     }
    
-    const res = await fetch("https://hrms-backend-production-3091.up.railway.app/user/request-password-reset", {
+    const res = await fetch("https://hrms-backend-mv05.onrender.com/user/request-password-reset", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email }),
@@ -52,7 +52,7 @@ function VerifyOtpForm({ email, onNext }: { email: string, onNext: (otp: string)
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (timeLeft <= 0) return;
-    const res = await fetch("https://hrms-backend-production-3091.up.railway.app/user/verify-otp", {
+    const res = await fetch("https://hrms-backend-mv05.onrender.com/user/verify-otp", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, otp }),
@@ -66,7 +66,7 @@ function VerifyOtpForm({ email, onNext }: { email: string, onNext: (otp: string)
     }
   };
   const handleResend = async () => {
-    const res = await fetch("https://hrms-backend-production-3091.up.railway.app/user/request-password-reset", {
+    const res = await fetch("https://hrms-backend-mv05.onrender.com/user/request-password-reset", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email }),
@@ -99,7 +99,7 @@ function ResetPasswordForm({ email, otp }: { email: string, otp: string }) {
   const [success, setSuccess] = useState(false);
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const res = await fetch("https://hrms-backend-production-3091.up.railway.app/user/reset-password", {
+    const res = await fetch("https://hrms-backend-mv05.onrender.com/user/reset-password", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, otp, newPassword, confirmPassword }),
