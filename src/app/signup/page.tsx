@@ -71,7 +71,7 @@ const SignupPage = () => {
   }
     
     try {
-      const companyResponse = await fetch('https://hrms-backend-production-3091.up.railway.app/company', {
+      const companyResponse = await fetch('https://hrms-backend-mv05.onrender.com/company', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -92,7 +92,7 @@ const SignupPage = () => {
       
       const formattedDate = formData.DOB ? formData.DOB : null; 
       
-      const userResponse = await fetch('https://hrms-backend-production-3091.up.railway.app/user', {
+      const userResponse = await fetch('https://hrms-backend-mv05.onrender.com/user', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
