@@ -15,7 +15,7 @@ export default function ProfilePage() {
       try {
         const accessToken = sessionStorage.getItem('accessToken');
         const res = await fetch(
-          `https://hrms-backend-production-3091.up.railway.app/user/${userId}`,
+          `https://hrms-backend-mv05.onrender.com/user/${userId}`,
           { headers: { Authorization: `Bearer ${accessToken}` } }
         );
         const data = await res.json();
